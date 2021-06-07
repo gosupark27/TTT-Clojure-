@@ -1,7 +1,11 @@
 (ns tictactoe.core-spec
-  (:require [speclj.core :refer :all]
-            [tictactoe.core :refer :all]))
+ (:require [speclj.core :refer :all]
+           [tictactoe.core :refer :all]))
 
-(describe "a test"
-  (it "FIXME, I fail."
-    (should= 0 1)))
+(describe "tic tac toe game"
+
+ (it "Check if game is tied"
+  (should (tie? [\X \O \X \O \O \X \X \X \O]))
+  (should-not (tie? [\X \O \u0020 \O \O \X \X \X \O]))
+  )
+ )
