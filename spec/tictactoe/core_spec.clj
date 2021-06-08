@@ -2,18 +2,24 @@
  (:require [speclj.core :refer :all]
            [tictactoe.core :refer :all]))
 
-(describe "tic tac toe game"
+(describe "tic tac toe game logic"
 
- (it "get player of current turn"
-  (should= \X (get-turn 1))
-  (should= \O (get-turn 2))
-  (should= \X (get-turn 3))
-  (should= \O (get-turn 4))
+ (it "place a marker on the board"
+  (should=[\space \space \O \space \space \space \space \space \space] (place-marker 2 4))
+  (should=[\space \space \X \space \space \space \space \space \space] (place-marker 2 1))
+  )
+
+ (it "get marker of current player"
+  (should= \X (get-marker 1))
+  (should= \O (get-marker 2))
+  (should= \X (get-marker 3))
+  (should= \O (get-marker 4))
   )
 
  (it "Check if move is legal"
   (should (legal-move? [\u0020 \u0020 \u0020 \u0020 \u0020 \u0020 \u0020 \u0020 \u0020] 2))
   (should-not (legal-move? [\u0020 \u0020 \X \u0020 \u0020 \u0020 \u0020 \u0020 \u0020] 2))
+  (should-not (legal-move? [\u0020 \u0020 \u0020 \u0020 \u0020 \u0020 \u0020 \u0020 \u0020] nil))
   (should-not (legal-move? [\u0020 \u0020 \u0020 \u0020 \u0020 \u0020 \u0020 \u0020 \u0020] -1))
   (should-not (legal-move? [\u0020 \u0020 \u0020 \u0020 \u0020 \u0020 \u0020 \u0020 \u0020] 9))
   )
