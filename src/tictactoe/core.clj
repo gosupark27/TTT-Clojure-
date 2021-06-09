@@ -1,6 +1,7 @@
 (ns tictactoe.core)
 
-(def board (atom [\u0020 \u0020 \u0020 \u0020 \u0020 \u0020 \u0020 \u0020 \u0020]))
+(def board (atom [\space \space \space \space \space \space \space \space \space]))
+(def demo-board (atom [\1 \2 \3 \4 \5 \6 \7 \8 \9]))
 
 (def turn (atom 1))
 
@@ -34,7 +35,7 @@
  (= 0 (count (filter #(clojure.string/blank? (str %)) board))))
 
 (defn place-marker [square turn]
- (swap! board assoc square (get-marker turn)))
+ (swap! board assoc (dec square) (get-marker turn)))
 
 
 

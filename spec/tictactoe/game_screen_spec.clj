@@ -15,7 +15,7 @@
   )
 
  (it "get a sequence of string board components"
-  (should= ["  |   |  " "--+---+--" "  |   |  " "--+---+--" "  |   |  "] (get-board [\u0020 \u0020 \u0020 \u0020 \u0020 \u0020 \u0020 \u0020 \u0020]))
+  (should= ["  |   |  " "--+---+--" "  |   |  " "--+---+--" "  |   |  "] (get-board [\space \space \space \space \space \space \space \space \space]))
   (should= ["X | X | O" "--+---+--" "O | O | X" "--+---+--" "O | X | X"] (get-board [\X \X \O \O \O \X \O \X \X]))
   )
 
