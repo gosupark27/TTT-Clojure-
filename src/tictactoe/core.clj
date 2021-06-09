@@ -19,25 +19,26 @@
    false)))
 
 (defn win? [board mark]
- (or
-  (and (= mark (get board 0)) (= mark (get board 1)) (= mark (get board 2)))
-  (and (= mark (get board 3)) (= mark (get board 4)) (= mark (get board 5)))
-  (and (= mark (get board 6)) (= mark (get board 7)) (= mark (get board 8)))
-  (and (= mark (get board 0)) (= mark (get board 3)) (= mark (get board 6)))
-  (and (= mark (get board 1)) (= mark (get board 4)) (= mark (get board 7)))
-  (and (= mark (get board 2)) (= mark (get board 5)) (= mark (get board 8)))
-  (and (= mark (get board 0)) (= mark (get board 4)) (= mark (get board 8)))
-  (and (= mark (get board 0)) (= mark (get board 4)) (= mark (get board 8)))
-  (and (= mark (get board 2)) (= mark (get board 4)) (= mark (get board 6))))
- )
+ (let [board (filter #(not (= " " (str %))) board)]
+       (or
+        (and (= (get board 0) (get board 1)) (= (get board 1) (get board 2)))
+        (and (= (get board 3) (get board 4)) (= (get board 4) (get board 5)))
+        (and (= (get board 6) (get board 7)) (= (get board 7) (get board 8)))
+        (and (= (get board 0) (get board 3)) (= (get board 3) (get board 6)))
+        (and (= (get board 1) (get board 4)) (= (get board 4) (get board 7)))
+        (and (= (get board 2) (get board 5)) (= (get board 5) (get board 8)))
+        (and (= (get board 0) (get board 4)) (= (get board 4) (get board 8)))
+        (and (= (get board 0) (get board 4)) (= (get board 4) (get board 8))))))
+        ;(and (= mark (get board 2)) (= mark (get board 4)) (= mark (get board 6))))))
 
 (defn tie? [board]
  (= 0 (count (filter #(clojure.string/blank? (str %)) board))))
 
 (defn place-marker [square turn]
- (swap! board assoc (dec square) (get-marker turn)))
+ (swap! board assoc square (get-marker turn)))
 
 
-
+;(filter #(not (= " " (str %))) [\X \X \X \space \space \space \space \space \space])
+(or (= (get board 0) (get board 1)) (= (get board 1) (get board 2)))
 
 

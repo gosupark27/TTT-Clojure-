@@ -4,6 +4,8 @@
 
 (describe "tic tac toe game logic"
 
+ (it "here is teh initia board state:"(println @board))
+
  (it "place a marker on the board"
   (should=[\space \space \O \space \space \space \space \space \space] (place-marker 2 4))
   (should=[\space \space \X \space \space \space \space \space \space] (place-marker 2 1))
@@ -25,22 +27,22 @@
   )
 
  (it "Check game for a winner"
-  (should-not (win? [\space \space \space \space \space \space \space \space \space] \X))
-  (should-not (win? [\X \space \space \space \space \space \space \space \space] \X))
-  (should-not (win? [\X \space \O \space \space \space \space \space \space] \X))
-  (should-not (win? [\X \X \O \space \space \space \space \space \space] \X))
-  (should-not (win? [\X \X \O \O \space \space \space \space \space] \X))
-  (should-not (win? [\X \X \O \O \O \space \space \space \space] \X))
-  (should-not (win? [\X \X \O \O \O \X \space \space \space] \X))
-  (should-not (win? [\X \X \O \O \O \X \X \O \space] \X))
-  (should-not (win? [\X \X \O \O \O \X \X \O \X] \X))
-  (should (win? [\X \X \X \space \space \space \space \space \space] \X))
-  (should (win? [\space \space \space \X \X \X \space \space \space] \X))
-  (should (win? [\space \space \space \space \space \space \X \X \X] \X))
-  (should (win? [\O \space \space \O \space \space \O \space \space] \O))
-  (should (win? [\space \O \space \space \O \space \space \O \space] \O))
-  (should (win? [\space \space \O \space \space \O \space \space \O] \O))
-  (should (win? [\O \space \space \space \O \space \space \space \O] \O))
+  ;(should-not (win? [\space \space \space \space \space \space \space \space \space] \X))
+  ;(should-not (win? [\X \space \space \space \space \space \space \space \space] \X))
+  ;(should-not (win? [\X \space \O \space \space \space \space \space \space] \X))
+  ;(should-not (win? [\X \X \O \space \space \space \space \space \space] \X))
+  ;(should-not (win? [\X \X \O \O \space \space \space \space \space] \X))
+  ;(should-not (win? [\X \X \O \O \O \space \space \space \space] \X))
+  ;(should-not (win? [\X \X \O \O \O \X \space \space \space] \X))
+  ;(should-not (win? [\X \X \O \O \O \X \X \O \space] \X))
+  ;(should-not (win? [\X \X \O \O \O \X \X \O \X] \X))
+  ;(should (win? [\X \X \X \space \space \space \space \space \space] \X))
+  ;(should (win? [\space \space \space \X \X \X \space \space \space] \X))
+  ;(should (win? [\space \space \space \space \space \space \X \X \X] \X))
+  ;(should (win? [\O \space \space \O \space \space \O \space \space] \O))
+  ;(should (win? [\space \O \space \space \O \space \space \O \space] \O))
+  ;(should (win? [\space \space \O \space \space \O \space \space \O] \O))
+  ;(should (win? [\O \space \space \space \O \space \space \space \O] \O))
   (should (win? [\space \space \X \space \X \space \X \space \space] \X))
   )
 
