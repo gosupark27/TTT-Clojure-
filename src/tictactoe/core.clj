@@ -18,18 +18,52 @@
    (clojure.string/blank? (str move))
    false)))
 
-(defn win? [board mark]
- (let [board (filter #(not (= " " (str %))) board)]
-       (or
-        (and (= (get board 0) (get board 1)) (= (get board 1) (get board 2)))
-        (and (= (get board 3) (get board 4)) (= (get board 4) (get board 5)))
-        (and (= (get board 6) (get board 7)) (= (get board 7) (get board 8)))
-        (and (= (get board 0) (get board 3)) (= (get board 3) (get board 6)))
-        (and (= (get board 1) (get board 4)) (= (get board 4) (get board 7)))
-        (and (= (get board 2) (get board 5)) (= (get board 5) (get board 8)))
-        (and (= (get board 0) (get board 4)) (= (get board 4) (get board 8)))
-        (and (= (get board 0) (get board 4)) (= (get board 4) (get board 8))))))
-        ;(and (= mark (get board 2)) (= mark (get board 4)) (= mark (get board 6))))))
+(defn all-same-marker? [[a b c]]
+ (if (= 3 (count (filter #(not (clojure.string/blank? (str %))) [a b c])))
+  (and (= a b) (= b c))
+  false))
+
+;(def combo (conj (partition 3 @demo-board) (partition-by #(= 0 (mod (.indexOf @demo-board %) 3)) @demo-board)))
+
+;(def combo [(vector (get @board 0) (get @board 1) (get @board 2))
+;            (vector (get @board 3) (get @board 4) (get @board 5))
+;            (vector (get @board 6) (get @board 7) (get @board 8))
+;            (vector (get @board 0) (get @board 3) (get @board 6))
+;            (vector (get @board 1) (get @board 4) (get @board 7))
+;            (vector (get @board 2) (get @board 5) (get @board 8))
+;            (vector (get @board 0) (get @board 4) (get @board 8))
+;            (vector (get @board 2) (get @board 4) (get @board 6))
+;            ])
+
+(defn get-combo [board]
+ [(vector (get board 0) (get board 1) (get board 2))
+  (vector (get board 3) (get board 4) (get board 5))
+  (vector (get board 6) (get board 7) (get board 8))
+  (vector (get board 0) (get board 3) (get board 6))
+  (vector (get board 1) (get board 4) (get board 7))
+  (vector (get board 2) (get board 5) (get board 8))
+  (vector (get board 0) (get board 4) (get board 8))
+  (vector (get board 2) (get board 4) (get board 6))
+  ])
+
+(defn win? [board]
+ (not (nil? (some true? (map all-same-marker? (get-combo board))))
+  )
+ )
+
+;(let [board (filter #(not (= " " (str %))) board)]
+; (if (or (= 0 (count board)) (> 3 (count board)))
+;  false
+;  (or
+;   (and (= (get board 0) (get board 1)) (= (get board 1) (get board 2)))
+;   (and (= (get board 3) (get board 4)) (= (get board 4) (get board 5)))
+;   (and (= (get board 6) (get board 7)) (= (get board 7) (get board 8)))
+;   (and (= (get board 0) (get board 3)) (= (get board 3) (get board 6)))
+;   (and (= (get board 1) (get board 4)) (= (get board 4) (get board 7)))
+;   (and (= (get board 2) (get board 5)) (= (get board 5) (get board 8)))
+;   (and (= (get board 0) (get board 4)) (= (get board 4) (get board 8)))
+;   (and (= (get board 0) (get board 4)) (= (get board 4) (get board 8))))
+;  ))
 
 (defn tie? [board]
  (= 0 (count (filter #(clojure.string/blank? (str %)) board))))
@@ -39,6 +73,11 @@
 
 
 ;(filter #(not (= " " (str %))) [\X \X \X \space \space \space \space \space \space])
-(or (= (get board 0) (get board 1)) (= (get board 1) (get board 2)))
+;(or (= (get board 0) (get board 1)) (= (get board 1) (get board 2)))
+
+
+;(when (some (map all-x? combos) :win))
+
+
 
 

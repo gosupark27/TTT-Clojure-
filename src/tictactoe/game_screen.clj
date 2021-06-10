@@ -27,4 +27,15 @@
 
 (defn get-user-input []
  (let [n (Integer/parseInt (read-line))]
-  n ))
+  n))
+
+(defn get-combo [board]
+ [(vector (get board 0) (get board 1) (get board 2))
+  (vector (get board 3) (get board 4) (get board 5))
+  (vector (get board 6) (get board 7) (get board 8))
+  (vector (get board 0) (get board 3) (get board 6))
+  (vector (get board 1) (get board 4) (get board 7))
+  (vector (get board 2) (get board 5) (get board 8))
+  (vector (get board 0) (get board 4) (get board 8))
+  (vector (get board 2) (get board 4) (get board 6))
+  ])

@@ -5,7 +5,7 @@
 (defn -main []
  (println "Let's play a game of tic tac toe.")
  (screen/print-board-to-console @core/demo-board)
- (while (not (or (core/win? @core/board (core/get-marker @core/turn)) (core/tie? @core/board)))
+ (while (not (or (core/win? @core/board) (core/tie? @core/board)))
   (println "Please enter a square (1 - 9) to place a marker")
   (let [square (Integer/parseInt (read-line))]
    (while (not (core/legal-move? @core/board square))

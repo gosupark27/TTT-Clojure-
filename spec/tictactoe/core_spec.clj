@@ -4,7 +4,13 @@
 
 (describe "tic tac toe game logic"
 
- (it "here is teh initia board state:"(println @board))
+ (it "check if all elements are the same"
+  (should-not (all-same-marker? []))
+  (should-not (all-same-marker? [\space \space \space]))
+  (should-not (all-same-marker? [\space \space \X]))
+  (should-not (all-same-marker? [\space \X \X]))
+  (should (all-same-marker? [\X \X \X]))
+  )
 
  (it "place a marker on the board"
   (should=[\space \space \O \space \space \space \space \space \space] (place-marker 2 4))
@@ -27,23 +33,23 @@
   )
 
  (it "Check game for a winner"
-  ;(should-not (win? [\space \space \space \space \space \space \space \space \space] \X))
-  ;(should-not (win? [\X \space \space \space \space \space \space \space \space] \X))
-  ;(should-not (win? [\X \space \O \space \space \space \space \space \space] \X))
-  ;(should-not (win? [\X \X \O \space \space \space \space \space \space] \X))
-  ;(should-not (win? [\X \X \O \O \space \space \space \space \space] \X))
-  ;(should-not (win? [\X \X \O \O \O \space \space \space \space] \X))
-  ;(should-not (win? [\X \X \O \O \O \X \space \space \space] \X))
-  ;(should-not (win? [\X \X \O \O \O \X \X \O \space] \X))
-  ;(should-not (win? [\X \X \O \O \O \X \X \O \X] \X))
-  ;(should (win? [\X \X \X \space \space \space \space \space \space] \X))
-  ;(should (win? [\space \space \space \X \X \X \space \space \space] \X))
-  ;(should (win? [\space \space \space \space \space \space \X \X \X] \X))
-  ;(should (win? [\O \space \space \O \space \space \O \space \space] \O))
-  ;(should (win? [\space \O \space \space \O \space \space \O \space] \O))
-  ;(should (win? [\space \space \O \space \space \O \space \space \O] \O))
-  ;(should (win? [\O \space \space \space \O \space \space \space \O] \O))
-  (should (win? [\space \space \X \space \X \space \X \space \space] \X))
+  (should-not (win? [\space \space \space \space \space \space \space \space \space]))
+  (should-not (win? [\X \space \space \space \space \space \space \space \space]))
+  (should-not (win? [\X \space \O \space \space \space \space \space \space]))
+  (should-not (win? [\X \X \O \space \space \space \space \space \space]))
+  (should-not (win? [\X \X \O \O \space \space \space \space \space]))
+  (should-not (win? [\X \X \O \O \O \space \space \space \space]))
+  (should-not (win? [\X \X \O \O \O \X \space \space \space]))
+  (should-not (win? [\X \X \O \O \O \X \X \O \space]))
+  (should-not (win? [\X \X \O \O \O \X \X \O \X]))
+  (should (win? [\X \X \X \space \space \space \space \space \space]))
+  (should (win? [\space \space \space \X \X \X \space \space \space]))
+  (should (win? [\space \space \space \space \space \space \X \X \X]))
+  (should (win? [\O \space \space \O \space \space \O \space \space]))
+  (should (win? [\space \O \space \space \O \space \space \O \space]))
+  (should (win? [\space \space \O \space \space \O \space \space \O]))
+  (should (win? [\O \space \space \space \O \space \space \space \O]))
+  (should (win? [\space \space \X \space \X \space \X \space \space]))
   )
 
  (it "Check if game is tied"
