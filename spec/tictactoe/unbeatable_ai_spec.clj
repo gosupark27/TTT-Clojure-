@@ -1,2 +1,3 @@
 (ns tictactoe.unbeatable-ai-spec
-  (:require [clojure.test :refer :all]))
+  (:require [speclj.core :refer :all]
+            [tictactoe.unbeatable-ai :refer :all]))
