@@ -1,6 +1,6 @@
 (ns tictactoe.core-spec
  (:require [speclj.core :refer :all]
-           [tictactoe.core :refer :all]))
+           [tictactoe.game-board :refer :all]))
 
 (describe "tic tac toe game logic"
 

@@ -1,6 +1,6 @@
 (ns tictactoe.game-screen-spec
  (:require [speclj.core :refer :all]
-           [tictactoe.game_screen :refer :all]))
+           [tictactoe.game-screen :refer :all]))
 (describe "tic tac toe console"
 
  (it "gets nth row of game board"

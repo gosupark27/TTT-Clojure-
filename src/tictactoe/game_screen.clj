@@ -1,5 +1,5 @@
-(ns tictactoe.game_screen
- (:require [tictactoe.core :as core]))
+(ns tictactoe.game-screen
+ (:require [tictactoe.game-board :as core]))
 
 (defn get-nth-row [board n]
  (let [row (cond
@@ -16,9 +16,8 @@
  (let [row-1 (map #(str %) (get-nth-row board 1))
        row-2 (map #(str %) (get-nth-row board 2))
        row-3 (map #(str %) (get-nth-row board 3))
-       rows (vector row-1 row-2 row-3)
-       board (interpose "--+---+--" (map #(get-board-row %) rows))]
-  board))
+       rows (vector row-1 row-2 row-3)]
+  (interpose "--+---+--" (map #(get-board-row %) rows))))
 
 (defn print-board-to-console [board]
  (doseq [gameboard (get-board board)]

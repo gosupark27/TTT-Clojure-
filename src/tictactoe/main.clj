@@ -1,6 +1,6 @@
 (ns tictactoe.main
- (:require [tictactoe.game_screen :as screen])
- (:require [tictactoe.core :as core]))
+ (:require [tictactoe.game-screen :as screen])
+ (:require [tictactoe.game-board :as core]))
 
 (defn -main []
  (println "Let's play a game of tic tac toe.\n")
@@ -9,7 +9,7 @@
   (println "\n" @core/board "\n")
   (println "\nPlease enter a square (1 - 9) to place a marker")
   (let [square (dec (Integer/parseInt (read-line)))]
-   (when (not (core/legal-move? @core/board square))
+   (when-not (core/legal-move? @core/board square)
     (println "Not a legal move. Please enter a square (1 - 9) to place a marker")
     (def new-square (dec (Integer/parseInt (read-line))))
     (core/place-marker new-square @core/turn)
@@ -20,3 +20,4 @@
  )
 
 
+[         ]

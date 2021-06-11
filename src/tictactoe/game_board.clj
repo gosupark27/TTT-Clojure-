@@ -1,4 +1,4 @@
-(ns tictactoe.core)
+(ns tictactoe.game-board)
 
 (def board (atom [\space \space \space \space \space \space \space \space \space]))
 (def demo-board (atom [\1 \2 \3 \4 \5 \6 \7 \8 \9]))
