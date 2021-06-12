@@ -1,13 +1,20 @@
 (ns tictactoe.unbeatable-ai
  (:require [tictactoe.game-board :as board]))
 
-(defn eval-board-square [square board]
- (board/place-marker square @board/turn)
- (cond
-  (board/win? @board/game-board) 10
-  (board/tie? @board/game-board) 0
-  :else "POOP"
-  ))
+;(defn eval-board-square [square board]
+; (board/place-marker square @board/turn)
+; (cond
+;  (board/win? updated-board) 10
+;  (board/tie? updated-board) 0
+;  :else nil
+;  ))
+
+(defn eval-board-square [mark square board]
+ (let [updated-board (assoc board square mark)]
+  (cond
+   (and (= mark \O) (board/win? updated-board)) -10
+   (board/win? updated-board) 10
+   (board/tie? updated-board) 0)))
 
 (defn get-empty-board-square-indices [board]
  (loop [empty-square-indices []

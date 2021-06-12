@@ -15,9 +15,13 @@
  (if (not (zero? (mod n 2)))
   (get players :p1)
   (get players :p2)))
-
 (defn place-marker [square turn]
  (swap! game-board assoc square (get-marker turn)))
+
+;{:board board :marker marker :square square}
+
+;(defn place-marker [square marker board]
+; (swap! game-board assoc square (get-marker turn)))
 
 (defn all-same-marker? [[a b c]]
  (if (= 3 (count (filter #(not (clojure.string/blank? (str %))) [a b c])))
