@@ -1,7 +1,7 @@
 (ns tictactoe.game-screen-spec
  (:require [speclj.core :refer :all]
            [tictactoe.game-screen :refer :all]))
-(describe "tic tac toe console"
+(describe "tic tac toe - console"
 
  (it "gets nth row of game board"
   (should= [\X \X \O] (get-nth-row [\X \X \O \O \O \X \O \X \X] 1))

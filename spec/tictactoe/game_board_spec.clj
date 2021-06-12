@@ -2,7 +2,7 @@
  (:require [speclj.core :refer :all]
            [tictactoe.game-board :refer :all]))
 
-(describe "tic tac toe game logic"
+(describe "tic tac toe - game logic"
 
  (it "Check if move is legal"
   (should (legal-move? [\space \space \space \space \space \space \space \space \space] 2))
@@ -32,6 +32,7 @@
   (should (all-same-marker? [\X \X \X]))
   )
 
+ ; need to add more test cases to this one!
  (it "gets the rows for all winning combinations"
   (should= [[\1 \2 \3] [\4 \5 \6] [\7 \8 \9] [\1 \4 \7] [\2 \5 \8] [\3 \6 \9]
             [\1 \5 \9] [\3 \5 \7]]
