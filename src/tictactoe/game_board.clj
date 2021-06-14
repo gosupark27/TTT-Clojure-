@@ -11,8 +11,8 @@
    (clojure.string/blank? (str move))
    false)))
 
-(defn get-marker [n]
- (if (not (zero? (mod n 2)))
+(defn get-marker [turn]
+ (if (not (zero? (mod turn 2)))
   (get players :p1)
   (get players :p2)))
 (defn place-marker [square turn]

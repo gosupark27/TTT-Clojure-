@@ -19,6 +19,6 @@
        rows (vector row-1 row-2 row-3)]
   (interpose "--+---+--" (map #(get-board-row %) rows))))
 
-(defn print-board-to-console [board]
+(defn print-game-board-to-console [board]
  (doseq [gameboard (get-board board)]
   (println gameboard)))

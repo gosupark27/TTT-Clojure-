@@ -4,7 +4,7 @@
 
 (defn -main []
  (println "Let's play a game of tic tac toe.\n")
- (screen/print-game-board-to-console @core/demo-game-board)
+ (screen/print-game-board-to-console @core/demo-board)
  (while (not (or (core/win? @core/game-board) (core/tie? @core/game-board)))
   (println "\n" @core/game-board "\n")
   (println "\nPlease enter a square (1 - 9) to place a marker")
