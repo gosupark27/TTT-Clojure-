@@ -1,6 +1,7 @@
 (ns tictactoe.main
  (:require [tictactoe.game-screen :as screen])
- (:require [tictactoe.game-board :as core]))
+ (:require [tictactoe.game-board :as core])
+ (:require [tictactoe.unbeatable-ai :as ai]))
 
 (defn -main []
  (println "Let's play a game of tic tac toe.\n")

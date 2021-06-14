@@ -9,10 +9,9 @@
 
   (it "evaluates an updated board with square"
     (should= 0 (eval-board-square \X 2 [\X \O \space \O \O \X \X \X \O]))
-    (should= 10 (eval-board-square \X 8 [\O \X \O \O \O \X \X \X \space]))
-    (should= -10 (eval-board-square \O 8 [\O \X \X \O \O \space \X \X \space]))
-    (should= 0 (eval-board-square \X 3 [\O \X \space \O \O \space \X \X \space]))
-    (should= 0 (eval-board-square \X -1 [\O \X \space \O \O \space \X \X \space]))
+    (should= -10 (eval-board-square \X 8 [\O \X \O \O \O \X \X \X \space]))
+    (should= 10 (eval-board-square \O 8 [\O \X \X \O \O \space \X \X \space]))
+    (should= nil (eval-board-square \X 3 [\O \X \space \O \O \space \X \X \space]))
     )
 
   (it "recursively finds all the blank spaces in board"
@@ -23,18 +22,22 @@
     )
 
   (it "minimax algo"
-    (should= 8 (mini-max [\X \X \O \O \O \X \X \O \space] 9))
-    (should= 7 (mini-max [\X \X \O \O \O \X \X \space \O] 9))
-    (should= 4 (mini-max [\X \X \O \O \space \X \X \O \O] 9))
-    (should= 2 (mini-max [\X \X \space \O \space \X \X \O \O] 7))
+    (should= 0 (mini-max [\X \X \O \O \O \X \X \O \space] 9))
+    (should= -10 (mini-max [\X \X \space \O \O \X \X \O \X] 9))
+    (should= 10 (mini-max [\X \X \O \O \space \X \space \O \O] 8))
+    (should= 0 (mini-max [\X \X \space \O \space \X \X \O \O] 8))
+    (should= 0 (mini-max [\X \X \O \O \O \space \X \space \space] 7))
+    (should= -10 (mini-max [\O \space \X \space \O \space \O \X \X] 7))
+    (should= 10 (mini-max [\O \space \X \space \O \space \O \space \X] 6))
     )
 
-  (xit (it "get best move using minimax algo"
+  (it "get best move using minimax algo"
     (should= 8 (get-best-move [\X \X \O \O \O \X \X \O \space] 9))
     (should= 7 (get-best-move [\X \X \O \O \O \X \X \space \O] 9))
     (should= 4 (get-best-move [\X \X \O \O \space \X \X \O \O] 9))
-    (should= 2 (get-best-move [\X \X \space \O \space \X \X \O \O] 7))))
-
+    (should= 4 (get-best-move [\X \X \O \O \space \X \space \O \O] 8))
+    (should= 2 (get-best-move [\X \X \space \O \space \X \X \O \O] 7))
+    )
   )
 
 
