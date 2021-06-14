@@ -1,45 +1,109 @@
 (ns tictactoe.unbeatable-ai-spec
-  (:require [speclj.core :refer :all]
-            [tictactoe.unbeatable-ai :refer :all]))
+ (:require [speclj.core :refer :all]
+           [tictactoe.unbeatable-ai :refer :all]))
+
+(def x \X)
+(def o \O)
+(def - \space)
 
 (describe "tic tac toe - unbeatable ai"
 
-  ;(it "if game is not over keep playing"
-  ;  (should (game-over? )))
+ ;(it "if game is not over keep playing"
+ ;  (should (game-over? )))
 
-  (it "evaluates an updated board with square"
-    (should= 0 (eval-board-square \X [\X \O \X \O \O \X \X \X \O]))
-    (should= 10 (eval-board-square \X  [\O \X \O \O \O \X \X \X \X]))
-    (should= -10 (eval-board-square \O [\O \X \X \O \O \space \X \X \O]))
-    (should= nil (eval-board-square \X [\O \X \space \O \O \space \X \X \space]))
-    )
-
-  (it "recursively finds all the blank spaces in board"
-    (should= [] (get-empty-board-square-indices [\X \O \X \O \O \X \X \X \O]))
-    (should= [0] (get-empty-board-square-indices [\space \O \X \O \O \X \X \X \O]))
-    (should= [0 5] (get-empty-board-square-indices [\space \O \X \O \O \space \X \X \O]))
-    (should= [0 1 2 3 4 5 6 7 8] (get-empty-board-square-indices [\space \space \space \space \space \space \space \space \space]))
-    )
-
-  (xit (it "minimax algo"
-    (should= 0 (mini-max [\X \X \O \O \O \X \X \O \space] 9))
-    (should= 10 (mini-max [\X \X \space \O \O \X \X \O \X] 9))
-    (should= -10 (mini-max [\X \X \O \O \space \X \space \O \O] 8))
-    (should= 0 (mini-max [\X \X \space \O \space \X \X \O \O] 8))
-    (should= 0 (mini-max [\X \X \O \O \O \space \X \space \space] 7))
-    (should= 10 (mini-max [\O \space \X \space \O \space \O \X \X] 7))
-    (should= -10 (mini-max [\O \space \X \space \O \space \O \space \X] 6))
-    ))
-
-  (it "get best move using minimax algo"
-    ;(should= 8 (get-best-move [\X \X \O \O \O \X \X \O \space] 9))
-    ;(should= 7 (get-best-move [\X \X \O \O \O \X \X \space \O] 9))
-    ;(should= 4 (get-best-move [\X \X \O \O \space \X \X \O \O] 9))
-    ;(should= 4 (get-best-move [\X \X \O \O \space \X \space \O \O] 8))
-    ;(should= 2 (get-best-move [\X \X \space \O \space \X \X \O \O] 7))
-    ;(should= 5 (get-best-move [\O \space \X \space \O \space \space \space \X] 5))
-    (should= 5 (get-best-move [\X \space \space \space \O \space \space \space \space] 3))
-    )
+ (it "evaluates an updated board with square"
+  (should (eval-board-square [x o x
+                              o o x
+                              x x o]))
+  (should (eval-board-square [o x o
+                              o o x
+                              x x x]))
+  (should (eval-board-square [o x x
+                              o o -
+                              x x o]))
+  (should-not (eval-board-square [o x -
+                                  o o -
+                                  x x -]))
   )
 
+ (it "recursively finds all the blank spaces in board"
+  (should= [] (get-empty-board-square-indices [x o x
+                                               o o x
+                                               x x o]))
+  (should= [0] (get-empty-board-square-indices [- o x
+                                                o o x
+                                                x x o]))
+  (should= [0 5] (get-empty-board-square-indices [- o x
+                                                  o o -
+                                                  x x o]))
+  (should= [0 1 2 3 4 5 6 7 8] (get-empty-board-square-indices [- - -
+                                                                - - -
+                                                                - - -]))
+  )
+
+ (it "minimax algo"
+  (should= 0 (mini-max [x x o
+                        o o x
+                        x o -]))
+  (should= 0 (mini-max [x x -
+                        o - x
+                        x o o]))
+  (should= 0 (mini-max [x x o
+                        o o -
+                        x - -]))
+  (should= 1 (mini-max [x x -
+                        o o x
+                        o o x]))
+  (should= 3 (mini-max [o - x
+                        - o -
+                        o x x]))
+  (should= 3 (mini-max [- x -
+                        o - x
+                        - o -]))
+
+  (should= -2 (mini-max [x x o
+                         o - x
+                         - o o]))
+  (should= -4 (mini-max [o - x
+                         - o -
+                         o - x]))
+  )
+
+ (it "get best move using minimax algo"
+  (should= 8 (get-best-move [x x o
+                             o o x
+                             x o -]))
+  ; T-8 - if AI played for "O"
+  ;(should= 7 (get-best-move[x x o
+  ;                          o o x
+  ;                          x - -]))
+  (should= 5 (get-best-move [x x o
+                             o o -
+                             x - -]))
+  ; T-6 - if AI played for "O"
+  ;(should= 3 (get-best-move[x x o
+  ;                          - o -
+  ;                          x - -]))
+  (should= 6 (get-best-move [x x o
+                             - o -
+                             - - -]))
+  ;T-4 - if AI played for "O"
+  ;(should= 2 (get-best-move[x x -
+  ;                          - o -
+  ;                          - - -]))
+  (should= 1 (get-best-move [x - -
+                             - o -
+                             - - -]))
+  ;T-2 - if AI played for "O"
+  ;(should= 4 (get-best-move[x - -
+  ;                          - - -
+  ;                          - - -]))
+  (should= 0 (get-best-move [- - -
+                             - - -
+                             - - -]))
+  (should= 2 (get-best-move [x x -
+                             o o -
+                             - - -]))
+  )
+ )
 
