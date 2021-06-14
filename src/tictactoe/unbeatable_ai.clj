@@ -1,7 +1,7 @@
 (ns tictactoe.unbeatable-ai
  (:require [tictactoe.game-board :as board]))
 
-(defn eval-board-square [board]
+(defn eval-board? [board]
  (or
   (board/win? board)
   (board/tie? board)))
@@ -18,7 +18,7 @@
 
 (defn game-over? [possible-moves board]
  (or (= 0 (count possible-moves))
-     (eval-board-square board)))
+     (eval-board? board)))
 
 (defn mini-max [board]
  (let [possible-moves (get-empty-board-square-indices board)
@@ -48,11 +48,11 @@
    (if (= 0 (count possible-moves))
     best-move
     (let [turn (- 10 (count possible-moves))
-          square (first possible-moves)
-          new-board (assoc board square mark)
-          get-weight (mini-max new-board)]
-     (if (> get-weight best-weight)
-      (recur (rest possible-moves) square get-weight)
+          new-move (first possible-moves)
+          new-board (assoc board new-move mark)
+          new-weight (mini-max new-board)]
+     (if (> new-weight best-weight)
+      (recur (rest possible-moves) new-move new-weight)
       (recur (rest possible-moves) best-move best-weight)))
     ))))
 

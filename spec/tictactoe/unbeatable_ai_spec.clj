@@ -8,22 +8,19 @@
 
 (describe "tic tac toe - unbeatable ai"
 
- ;(it "if game is not over keep playing"
- ;  (should (game-over? )))
-
- (it "evaluates an updated board with square"
-  (should (eval-board-square [x o x
-                              o o x
-                              x x o]))
-  (should (eval-board-square [o x o
-                              o o x
-                              x x x]))
-  (should (eval-board-square [o x x
-                              o o -
-                              x x o]))
-  (should-not (eval-board-square [o x -
-                                  o o -
-                                  x x -]))
+ (it "check if board has a win or tie"
+  (should (eval-board? [x o x
+                        o o x
+                        x x o]))
+  (should (eval-board? [o x o
+                        o o x
+                        x x x]))
+  (should (eval-board? [o x x
+                        o o -
+                        x x o]))
+  (should-not (eval-board? [o x -
+                            o o -
+                            x x -]))
   )
 
  (it "recursively finds all the blank spaces in board"
