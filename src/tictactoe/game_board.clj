@@ -2,7 +2,7 @@
 
 (def game-board (atom [\space \space \space \space \space \space \space \space \space]))
 (def demo-board (atom [\1 \2 \3 \4 \5 \6 \7 \8 \9]))
-(def turn (atom 1))
+;(def turn (atom 1))
 (def players {:p1 \X :p2 \O})
 
 (defn legal-move? [board square]
@@ -15,13 +15,11 @@
  (if (not (zero? (mod turn 2)))
   (get players :p1)
   (get players :p2)))
-(defn place-marker [square turn]
- (swap! game-board assoc square (get-marker turn)))
 
 ;{:board board :marker marker :square square}
 
-;(defn place-marker [square marker board]
-; (swap! game-board assoc square (get-marker turn)))
+(defn place-marker [square turn]
+ (swap! game-board assoc square (get-marker turn)))
 
 (defn all-same-marker? [[a b c]]
  (if (= 3 (count (filter #(not (clojure.string/blank? (str %))) [a b c])))
